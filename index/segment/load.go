@@ -124,6 +124,12 @@ func LoadBytes(data []byte) (*segment, error) {
 	return Load(NewDataBytes(data))
 }
 
+// Open loads a segment from a byte slice and returns it as the Segment interface.
+// This is the primary function for external packages to load segments.
+func Open(data []byte) (Segment, error) {
+	return LoadBytes(data)
+}
+
 // newSegmentFromConstruction creates a Segment directly from construction metadata,
 // avoiding the need to re-parse the ZIP data. This is used by New() for efficiency.
 func newSegmentFromConstruction(

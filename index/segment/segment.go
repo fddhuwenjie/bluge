@@ -58,6 +58,12 @@ type Segment interface {
 
 	Type() string
 	Version() uint32
+
+	// ZIP-specific methods for segment inspection
+	CRC() uint32
+	ChunkMode() uint32
+	NumDocs() uint64
+	ZipEntries() ([]ZipEntry, error)
 }
 
 type DictionaryLookup interface {
