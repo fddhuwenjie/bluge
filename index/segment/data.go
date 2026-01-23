@@ -99,7 +99,7 @@ func (d *Data) WriteTo(w io.Writer) (int64, error) {
 
 func (d *Data) Size() int {
 	if d.mem != nil {
-		return cap(d.mem)
+		return len(d.mem)
 	}
 	return d.sz
 }
