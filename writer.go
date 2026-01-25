@@ -77,3 +77,8 @@ func (w *Writer) Reader() (*Reader, error) {
 		reader: r,
 	}, nil
 }
+
+// Stats returns statistics about the index.
+func (w *Writer) Stats() index.Stats {
+	return w.chill.Stats()
+}
