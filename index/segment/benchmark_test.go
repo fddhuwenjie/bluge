@@ -20,7 +20,6 @@ import (
 	"testing"
 
 	"github.com/RoaringBitmap/roaring"
-	
 )
 
 // benchFormat defines how to build and load segments for benchmarking

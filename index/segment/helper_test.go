@@ -24,7 +24,6 @@ import (
 
 	"github.com/RoaringBitmap/roaring"
 	"github.com/blevesearch/mmap-go"
-	
 )
 
 // various helpers to test with files, even though

@@ -15,11 +15,11 @@
 package searcher
 
 import (
+	"github.com/blugelabs/bluge/index/segment"
 	"github.com/blugelabs/bluge/numeric"
 	"github.com/blugelabs/bluge/numeric/geo"
 	"github.com/blugelabs/bluge/search"
 	"github.com/blugelabs/bluge/search/similarity"
-	"github.com/blugelabs/bluge/index/segment"
 )
 
 func NewGeoPointDistanceSearcher(indexReader search.Reader, centerLon,

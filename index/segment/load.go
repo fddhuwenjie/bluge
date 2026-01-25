@@ -45,14 +45,14 @@ type footer struct {
 
 // fieldOffsets holds the byte offsets for a field's ZIP entries
 type fieldOffsets struct {
-	metaOffset   uint64
-	metaSize     uint64
-	dictOffset   uint64
-	dictSize     uint64
-	postOffset   uint64
-	postSize     uint64
-	dvOffset     uint64
-	dvSize       uint64
+	metaOffset uint64
+	metaSize   uint64
+	dictOffset uint64
+	dictSize   uint64
+	postOffset uint64
+	postSize   uint64
+	dvOffset   uint64
+	dvSize     uint64
 }
 
 // Segment is a segment backed by a ZIP file format
@@ -68,11 +68,11 @@ type segment struct {
 	storedIndexSize   uint64
 
 	// Field data
-	fieldsMap    map[string]uint16   // fieldName -> fieldID+1
-	fieldsInv    []string            // fieldID -> fieldName
-	fieldDocs    map[uint16]uint64   // fieldID -> # docs with value in field
-	fieldFreqs   map[uint16]uint64   // fieldID -> # total tokens in field
-	fieldOffsets []fieldOffsets      // fieldID -> entry offsets
+	fieldsMap    map[string]uint16 // fieldName -> fieldID+1
+	fieldsInv    []string          // fieldID -> fieldName
+	fieldDocs    map[uint16]uint64 // fieldID -> # docs with value in field
+	fieldFreqs   map[uint16]uint64 // fieldID -> # total tokens in field
+	fieldOffsets []fieldOffsets    // fieldID -> entry offsets
 
 	fieldDvReaders map[uint16]*docValueReader
 	fieldDvNames   []string
@@ -1105,4 +1105,3 @@ func (zs *segment) ZipEntries() ([]ZipEntry, error) {
 
 	return entries, nil
 }
-

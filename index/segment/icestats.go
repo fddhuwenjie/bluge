@@ -14,9 +14,6 @@
 
 package segment
 
-import (
-)
-
 type collectionStats struct {
 	totalDocCount    uint64
 	docCount         uint64

@@ -19,7 +19,6 @@ import (
 	"testing"
 
 	"github.com/RoaringBitmap/roaring"
-	
 )
 
 func TestMergeBasic(t *testing.T) {

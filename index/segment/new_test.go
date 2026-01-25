@@ -17,8 +17,6 @@ package segment
 import (
 	"path/filepath"
 	"testing"
-
-	
 )
 
 func TestBuild(t *testing.T) {

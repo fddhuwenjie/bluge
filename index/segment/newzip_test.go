@@ -20,8 +20,6 @@ import (
 	"encoding/binary"
 	"strings"
 	"testing"
-
-	
 )
 
 func TestNewZip(t *testing.T) {
@@ -245,9 +243,9 @@ func TestZipDocValuesRoundtrip(t *testing.T) {
 	// Create a document with doc values
 	doc := &FakeDocument{
 		NewFakeField("_id", "a", true, false, false),
-		NewFakeField("color", "red", false, false, true),   // docValues=true
-		NewFakeField("color", "blue", false, false, true),  // multiple values
-		NewFakeField("size", "large", false, false, true),  // another field with doc values
+		NewFakeField("color", "red", false, false, true),  // docValues=true
+		NewFakeField("color", "blue", false, false, true), // multiple values
+		NewFakeField("size", "large", false, false, true), // another field with doc values
 	}
 	doc.FakeComposite("_all", []string{"_id"})
 
@@ -287,8 +285,8 @@ func TestZipDocValuesRoundtrip(t *testing.T) {
 
 	// Verify specific values are present
 	expectedValues := map[string]bool{
-		"color:red":   false,
-		"color:blue":  false,
+		"color:red":  false,
+		"color:blue": false,
 		"size:large": false,
 	}
 	for _, v := range visitedValues {

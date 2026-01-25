@@ -23,7 +23,6 @@ import (
 	"testing"
 
 	"github.com/RoaringBitmap/roaring"
-	
 )
 
 func TestMerge(t *testing.T) {

@@ -19,8 +19,6 @@ import (
 	"reflect"
 	"testing"
 
-	
-
 	"github.com/blevesearch/vellum/levenshtein"
 )
 

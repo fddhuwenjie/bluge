@@ -80,10 +80,10 @@ type zipSegmentWriter struct {
 	currentCRC uint32   // running CRC for compatibility
 
 	// Streaming ZIP output
-	zipBuf       bytes.Buffer
-	zw           *zip.Writer
-	manifest     []manifestEntry
-	streamErr    error  // store any error during streaming
+	zipBuf        bytes.Buffer
+	zw            *zip.Writer
+	manifest      []manifestEntry
+	streamErr     error  // store any error during streaming
 	runningOffset uint64 // tracks current offset in final ZIP
 
 	// Reusable entry buffers for field processing (reduces allocations)

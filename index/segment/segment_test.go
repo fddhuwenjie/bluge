@@ -19,8 +19,6 @@ import (
 	"reflect"
 	"testing"
 
-	
-
 	"github.com/RoaringBitmap/roaring"
 )
 

@@ -763,4 +763,3 @@ func (m *merger) mergeZipDocValues(zw *zipSegmentWriter, fieldName string, field
 
 	return nil
 }
-

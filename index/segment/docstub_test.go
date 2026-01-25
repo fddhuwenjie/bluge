@@ -16,8 +16,6 @@ package segment
 
 import (
 	"strings"
-
-	
 )
 
 type FakeDocument []*FakeField

@@ -17,7 +17,6 @@ package segment
 import (
 	"encoding/binary"
 	"fmt"
-
 )
 
 type chunkedIntDecoder struct {

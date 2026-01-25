@@ -21,14 +21,13 @@ import (
 	"testing"
 
 	"github.com/RoaringBitmap/roaring"
-	
 )
 
 // segmentFormat defines how to build and load segments for a specific format
 type segmentFormat struct {
-	name   string
-	build  func(docs []Document) (Segment, []byte, error)
-	load   func(data []byte) (Segment, error)
+	name  string
+	build func(docs []Document) (Segment, []byte, error)
+	load  func(data []byte) (Segment, error)
 }
 
 var zipFormat = segmentFormat{
@@ -729,9 +728,9 @@ func TestZipEntries(t *testing.T) {
 
 	// Verify we have expected entries
 	expectedEntries := map[string]bool{
-		"_footer":        false,
-		"_stored/data":   false,
-		"_stored/index":  false,
+		"_footer":       false,
+		"_stored/data":  false,
+		"_stored/index": false,
 	}
 
 	for _, entry := range entries {
