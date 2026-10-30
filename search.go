@@ -59,11 +59,12 @@ func (b BaseSearch) Searcher(i search.Reader, config Config) (search.Searcher, e
 // It also allows for skipping a specified number of matches which can be used to enable pagination.
 type TopNSearch struct {
 	BaseSearch
-	n        int
-	from     int
-	sort     search.SortOrder
-	after    [][]byte
-	reversed bool
+	n             int
+	from          int
+	sort          search.SortOrder
+	after         [][]byte
+	reversed      bool
+	collapseField string
 }
 
 // NewTopNSearch creates a search which will find the matches and return the first N when ordered by the
@@ -149,6 +150,22 @@ func (s *TopNSearch) SortOrder() search.SortOrder {
 	return s.sort
 }
 
+// CollapseBy 启用字段折叠：折叠字段值相同的匹配文档视为同一组，
+// 仅返回该组在当前 SortBy 排序下最靠前的变体；不含该字段的匹配文档
+// 各自单独保留。field 必须是映射中已开启 Sortable（具备 doc values）
+// 的单值 keyword 字段，不要求出现在 SortBy 中；若某匹配文档在该字段
+// 上有多个值，搜索将返回错误。
+//
+// 折叠会先在全部匹配文档中确定每组代表，再对代表集合应用数量、SetFrom、
+// After 和 Before，因此翻页计数与游标均以折叠后的组为单位，同组的其他
+// 变体不会出现在相邻页；已有聚合仍统计所有原始匹配文档。
+//
+// 传入空字符串可关闭折叠。
+func (s *TopNSearch) CollapseBy(field string) *TopNSearch {
+	s.collapseField = field
+	return s
+}
+
 // ExplainScores enables the addition of scoring explanation to each match
 func (s *TopNSearch) ExplainScores() *TopNSearch {
 	s.options.ExplainScores = true
@@ -167,6 +184,12 @@ func (s *TopNSearch) SetScore(mode string) *TopNSearch {
 }
 
 func (s *TopNSearch) Collector() search.Collector {
+	if s.collapseField != "" {
+		// 折叠采集器始终按原始排序选择组代表，reverse 仅影响
+		// Before 游标的窗口截取，因此这里直接传入原始排序
+		return collector.NewCollapsingTopNCollector(s.n, s.from, s.sort,
+			s.after, s.reversed, s.collapseField)
+	}
 	if s.after != nil {
 		collectorSort := s.sort
 		if s.reversed {

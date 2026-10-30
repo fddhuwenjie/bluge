@@ -25,8 +25,11 @@ func init() {
 	sizeOfString = int(reflect.TypeOf(str).Size())
 	var coll TopNCollector
 	reflectStaticSizeTopNCollector = int(reflect.TypeOf(coll).Size())
+	var collapsingColl CollapsingTopNCollector
+	reflectStaticSizeCollapsingTopNCollector = int(reflect.TypeOf(collapsingColl).Size())
 }
 
 var sizeOfPtr int
 var sizeOfString int
 var reflectStaticSizeTopNCollector int
+var reflectStaticSizeCollapsingTopNCollector int
